@@ -8,64 +8,73 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="{{ url_for('index') }}" class="back-button">back</a>
+        <a href="{{ url_for('index') }}" class="back-button">Back</a>
         
-        <!-- Dropdown: Health Limits -->
         <div class="dropdown">
             <button class="dropbtn">Health Limits</button>
             <div class="dropdown-content">
-                <a href="#">Low Sodium</a>
-                <a href="#">Low Sugar</a>
-                <a href="#">Gluten Free</a>
+                <label><input type="checkbox" name="health-limits" value="Dairy Free"> Dairy Free</label>
+                <label><input type="checkbox" name="health-limits" value="Egg Free"> Egg Free</label>
+                <label><input type="checkbox" name="health-limits" value="Fish Free"> Fish Free</label>
+                <label><input type="checkbox" name="health-limits" value="Gluten Free"> Gluten Free</label>
+                <label><input type="checkbox" name="health-limits" value="Keto Friendly"> Keto Friendly</label>
+                <label><input type="checkbox" name="health-limits" value="Kosher"> Kosher</label>
+                <label><input type="checkbox" name="health-limits" value="Peanut Free"> Peanut Free</label>
+                <label><input type="checkbox" name="health-limits" value="Pork Free"> Pork Free</label>
+                <label><input type="checkbox" name="health-limits" value="Tree Nut Free"> Tree Nut Free</label>
+                <label><input type="checkbox" name="health-limits" value="Vegan"> Vegan</label>
+                <label><input type="checkbox" name="health-limits" value="Vegetarian"> Vegetarian</label>
             </div>
         </div>
 
-        <!-- Dropdown: Diets -->
         <div class="dropdown">
             <button class="dropbtn">Diets</button>
             <div class="dropdown-content">
-                <a href="#">Vegan</a>
-                <a href="#">Keto</a>
-                <a href="#">Paleo</a>
+                <label><input type="checkbox" name="diets" value="Balanced"> Balanced</label>
+                <label><input type="checkbox" name="diets" value="High Fiber"> High Fiber</label>
+                <label><input type="checkbox" name="diets" value="High Protein"> High Protein</label>
+                <label><input type="checkbox" name="diets" value="Low Carb"> Low Carb</label>
+                <label><input type="checkbox" name="diets" value="Low Fat"> Low Fat</label>
+                <label><input type="checkbox" name="diets" value="Low Sodium"> Low Sodium</label>
             </div>
         </div>
 
-        <!-- Update Button -->
         <button class="update-btn">Update</button>
     </nav>
-
-    <div class="container">
-        <ul class="list">
-            <li class="item"><div class="content">Item 1</div></li>
-            <li class="item"><div class="content">Item 2</div></li>
-            <li class="item"><div class="content">Item 3</div></li>
-            <li class="item"><div class="content">Item 4</div></li>
-            <li class="item"><div class="content">I'm gonna touch you</div></li>
-        </ul>
+    
+    <div class="content-container">
         <div class="flex-parent jc-center">
             <button class="button button--previous" type="button">➜</button>
+        </div>
+        <div class="container">
+            <ul class="list">
+                <li class="item"><div class="content">Item 1</div></li>
+                <li class="item"><div class="content">Item 2</div></li>
+                <li class="item"><div class="content">Item 3</div></li>
+                <li class="item"><div class="content">Item 4</div></li>
+                <li class="item"><div class="content">I'm gonna touch you</div></li>
+            </ul>
+        </div>
+        <div class="flex-parent jc-center">
             <button class="button button--next" type="button">➜</button>
         </div>
-    </div>
 
-    <script>
-        const list = document.querySelector(".list");
-        const item = document.querySelector(".item");
-        const itemWidth = item.offsetWidth;
-
-        function handleClick(direction) {
-            if(direction === "previous") {
-                list.scrollBy({ left: -itemWidth, behavior: "smooth" });
-            } else {
-                list.scrollBy({ left: itemWidth, behavior: "smooth" });
+        <script>
+            function handleClick(direction) {
+                const list = document.querySelector(".list");
+                const item = document.querySelector(".item");
+                const itemWidth = item ? item.offsetWidth : 0; // Ensure itemWidth is calculated
+                if(direction === "previous") {
+                    list.scrollBy({ left: -itemWidth, behavior: "smooth" });
+                } else {
+                    list.scrollBy({ left: itemWidth, behavior: "smooth" });
+                }
             }
-        }
 
-        document.querySelector(".button--previous").addEventListener("click", () => handleClick("previous"));
-        document.querySelector(".button--next").addEventListener("click", () => handleClick("next"));
-    </script>      
-    
+            document.querySelector(".button--previous").addEventListener("click", () => handleClick("previous"));
+            document.querySelector(".button--next").addEventListener("click", () => handleClick("next"));
+        </script>  
+    </div>
 </body>
 </html>
