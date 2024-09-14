@@ -26,47 +26,28 @@ for j in range(len(healthIndex)):
     healthRestrict.append(healthLabels[healthIndex[j]])
 
 response = requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}&healthLabels={healthRestrict}&dietLabels={dietRestrict}").json()
-readable_response = json.dumps(response, indent=4)
-
-response = requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}&healthLabels={healthRestrict}&dietLabels={dietRestrict}").json()
 
 
+all_recipes_data = []
 
 for i, hit in enumerate(response['hits']):
     recipe = hit['recipe']
     
-    # Extract desired information
-    recipe_name = recipe['label']
-    image = recipe['image']
-    url = recipe['url']
-    ingredients = recipe['ingredientLines']
-    
-    nutrients = recipe['totalNutrients']
-    calories = nutrients.get('ENERC_KCAL', {}).get('quantity', 'N/A')
-    sodium = nutrients.get('NA', {}).get('quantity', 'N/A')
-    cholesterol = nutrients.get('CHOLE', {}).get('quantity', 'N/A')
-    fat = nutrients.get('FAT', {}).get('quantity', 'N/A')
-    protein = nutrients.get('PROCNT', {}).get('quantity', 'N/A')
-    carbs = nutrients.get('CHOCDF', {}).get('quantity', 'N/A')
-    sugar = nutrients.get('SUGAR', {}).get('quantity', 'N/A')
-    fiber = nutrients.get('FIBTG', {}).get('quantity', 'N/A')
+    recipe_data = {
+        "recipe_name": recipe['label'],
+        "image": recipe['image'],
+        "url": recipe['url'],
+        "ingredients": recipe['ingredientLines'],
+        "calories": recipe['totalNutrients'].get('ENERC_KCAL', {}).get('quantity', 'N/A'),
+        "sodium": recipe['totalNutrients'].get('NA', {}).get('quantity', 'N/A'),
+        "cholesterol": recipe['totalNutrients'].get('CHOLE', {}).get('quantity', 'N/A'),
+        "fat": recipe['totalNutrients'].get('FAT', {}).get('quantity', 'N/A'),
+        "protein": recipe['totalNutrients'].get('PROCNT', {}).get('quantity', 'N/A'),
+        "carbs": recipe['totalNutrients'].get('CHOCDF', {}).get('quantity', 'N/A'),
+        "sugar": recipe['totalNutrients'].get('SUGAR', {}).get('quantity', 'N/A'),
+        "fiber": recipe['totalNutrients'].get('FIBTG', {}).get('quantity', 'N/A'),
+    }
+    all_recipes_data.append(recipe_data)
     
     # Print the extracted information for each recipe
-    print(f"Recipe {i+1}:")
-    print(f"Recipe Name: {recipe_name}")
-    print(f"Image URL: {image}")
-    print(f"Recipe URL: {url}")
-    print("\nIngredients:")
-    for ing in ingredients:
-        print(f"- {ing}")
-    
-    print("\nNutritional Information:")
-    print(f"Calories: {calories} kcal")
-    print(f"Sodium: {sodium} mg")
-    print(f"Cholesterol: {cholesterol} mg")
-    print(f"Fat: {fat} g")
-    print(f"Protein: {protein} g")
-    print(f"Carbohydrates: {carbs} g")
-    print(f"Sugar: {sugar} g")
-    print(f"Fiber: {fiber} g")
-    print("\n" + "="*50 + "\n")  # Separator between recipes
+print(all_recipes_data)
