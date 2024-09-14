@@ -39,15 +39,30 @@ for j in range(len(healthIndex)):
 
 response = requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}&healthLabels={healthRestrict}&dietLabels={dietRestrict}").json()
 
-    return response.get('hits', [])
 
-def get_recipes(ingredients):
-    app_id = "1e2add40"
-    app_key = "a3f2516eac59adac59fca4f60bee47d7"
+all_recipes_data = []
 
-    response = requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}").json()
+for i, hit in enumerate(response['hits']):
+    recipe = hit['recipe']
+    
+    recipe_data = {
+        "recipe_name": recipe['label'],
+        "image": recipe['image'],
+        "url": recipe['url'],
+        "ingredients": recipe['ingredientLines'],
+        "calories": recipe['totalNutrients'].get('ENERC_KCAL', {}).get('quantity', 'N/A'),
+        "sodium": recipe['totalNutrients'].get('NA', {}).get('quantity', 'N/A'),
+        "cholesterol": recipe['totalNutrients'].get('CHOLE', {}).get('quantity', 'N/A'),
+        "fat": recipe['totalNutrients'].get('FAT', {}).get('quantity', 'N/A'),
+        "protein": recipe['totalNutrients'].get('PROCNT', {}).get('quantity', 'N/A'),
+        "carbs": recipe['totalNutrients'].get('CHOCDF', {}).get('quantity', 'N/A'),
+        "sugar": recipe['totalNutrients'].get('SUGAR', {}).get('quantity', 'N/A'),
+        "fiber": recipe['totalNutrients'].get('FIBTG', {}).get('quantity', 'N/A'),
+    }
+    all_recipes_data.append(recipe_data)
 
-    return response.get('hits', [])
+    return all_recipes_data
+
 
 @app.route('/recipes')
 def recipes():
