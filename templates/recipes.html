@@ -54,17 +54,15 @@
                     <div class="flip-card">
                         <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <p>{{ recipe["recipe_name"] }}</p>
+                            <h1>{{ recipe['recipe_name'] }}</h1>
                         </div>
                         <div class="flip-card-back">
-                            <p>{{ recipe["recipe_name"] }}</p>
+                            <p>Architect & Engineer</p>
+                            <p>We love that guy</p>
                         </div>
                         </div>
                     </div>
                 </div></li>
-                <script>
-                    console.log(recipe["recipe_name"]);
-                </script>
                 {% endfor %}
             </ul>
         </div>
@@ -74,6 +72,14 @@
 
         <script>
             // Array of background images
+            const backgroundImages = [
+                "url('https://i.etsystatic.com/20341642/r/il/8be8cd/2572122727/il_1080xN.2572122727_2qhg.jpg')",
+                "url('https://i.etsystatic.com/20341642/r/il/ff34bf/2572267501/il_570xN.2572267501_bc3o.jpg')",
+                "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB78I9_xOXenkhp-dr-2mSsOSu1CauHuPGGQ&s')",
+                "url('https://i.etsystatic.com/20341642/r/il/1066b7/2524627264/il_570xN.2524627264_8sts.jpg')",
+                "url('https://i.etsystatic.com/11988330/r/il/71fcf6/2367988416/il_570xN.2367988416_hf6j.jpg')"
+            ];
+         
             var currentSlideIndex = 0; // Keep track of the current slide index
         
             // Function to handle click and slide transition
