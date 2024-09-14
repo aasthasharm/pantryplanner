@@ -45,7 +45,7 @@
     
     <div class="content-container">
         <div class="flex-parent jc-center">
-            <button class="button--previous" type="button">➜</button>
+            <button class="button button--previous" type="button">➜</button>
         </div>
         <div class="container">
             <ul class="list">
@@ -54,11 +54,19 @@
                     <div class="flip-card">
                         <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <h1>{{ recipe['recipe_name'] }}</h1>
+                            <p>{{ recipe['recipe_name'] }}</p>
+                            <p>Ingredients: {{ recipe['ingredients'] }}</p>
                         </div>
                         <div class="flip-card-back">
-                            <p>Architect & Engineer</p>
-                            <p>We love that guy</p>
+                            <p>Website URL: {{ recipe['url'] }}</p>
+                            <p>Calories: {{ recipe['calories'] }}</p>
+                            <p>Fat: {{ recipe['fat'] }}</p>
+                            <p>Sodium: {{ recipe['sodium'] }}</p>
+                            <p>Cholesterol: {{ recipe['cholesterol'] }}</p>
+                            <p>Carbs: {{ recipe['carbs'] }}</p>
+                            <p>Sugar: {{ recipe['sugar'] }}</p>
+                            <p>Fiber: {{ recipe['fiber'] }}</p>
+                            <p>Protein: {{ recipe['protein'] }}</p>
                         </div>
                         </div>
                     </div>
@@ -67,19 +75,11 @@
             </ul>
         </div>
         <div class="flex-parent jc-center">
-            <button class="button--next" type="button">➜</button>
+            <button class="button button--next" type="button">➜</button>
         </div>
 
-        <script>
+        <script type="text/javascript" {{ url_for('static', filename='app.js')}}>
             // Array of background images
-            const backgroundImages = [
-                "url('https://i.etsystatic.com/20341642/r/il/8be8cd/2572122727/il_1080xN.2572122727_2qhg.jpg')",
-                "url('https://i.etsystatic.com/20341642/r/il/ff34bf/2572267501/il_570xN.2572267501_bc3o.jpg')",
-                "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB78I9_xOXenkhp-dr-2mSsOSu1CauHuPGGQ&s')",
-                "url('https://i.etsystatic.com/20341642/r/il/1066b7/2524627264/il_570xN.2524627264_8sts.jpg')",
-                "url('https://i.etsystatic.com/11988330/r/il/71fcf6/2367988416/il_570xN.2367988416_hf6j.jpg')"
-            ];
-         
             var currentSlideIndex = 0; // Keep track of the current slide index
         
             // Function to handle click and slide transition
@@ -95,12 +95,6 @@
                     currentSlideIndex = Math.min(backgroundImages.length - 1, currentSlideIndex + 1);
                 }
                 console.log(currentSlideIndex);
-        
-                // Change the background image
-                document.body.style.backgroundImage = backgroundImages[currentSlideIndex];
-                document.body.classList.add("background-transition");
-
-                console.log(backgroundImages[currentSlideIndex]);
         
                 // Scroll to the new slide
                 list.scrollTo({ left: itemWidth * currentSlideIndex, behavior: "smooth" });

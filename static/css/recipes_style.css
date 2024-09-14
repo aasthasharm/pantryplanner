@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+p {
+    font-size: 16px;
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -178,11 +181,21 @@ body {
     left: 30rem;
     transform: rotate(180deg);
     float: left;
+    cursor: pointer;
 }
 
 .button--next {
     right: 30rem;
     float: right;
+    cursor: pointer;
+}
+
+.button--previous:hover {
+    cursor: pointer;
+}
+
+.button--next:hover {
+    cursor: pointer;
 }
 
 .flex-parent {
@@ -202,8 +215,8 @@ button.margin-right {
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     background-color: transparent;
-    width: 300px;
-    height: 200px;
+    width: 450px;
+    height: 300px;
     border: 1px solid #f1f1f1;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
   }
