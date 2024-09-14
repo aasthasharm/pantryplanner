@@ -10,6 +10,8 @@ def index():
 def submit():
     # do the submission
     ingredients = request.form['ingredients']
+    # dietIndex = request.form[]
+    # healthIndex = request.form[]
     return redirect(url_for('recipes'))
     # do this render_template with recipes information
     # real.
