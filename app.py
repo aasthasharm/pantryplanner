@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 import requests
 
 app = Flask(__name__)
-
+global ingredients
+ingredients = []
 
 @app.route('/')
 def index():
@@ -75,6 +76,34 @@ def get_recipes(ingredients, dietIndex=[6], healthIndex=[11]):
 def recipes():
     return render_template('recipes.html')
 
+@app.route('/update', methods=['GET','POST'])
+def update():
+    # we have ingredients
+    # we need to get dietIndex and healthIndex as arrays with index values in them
+    # then we run get_recipes with ingredients, dietIndex, and healthIndex
+    health_limits = request.form.getlist('health-limits')
+    print(health_limits)
+    diets = request.form.getlist('diets')
+    print(diets)
+
+    health_options = ["Dairy Free", "Egg Free", "Fish Free", "Gluten Free", "Keto Friendly", "Kosher", 
+                      "Peanut Free", "Pork Free", "Tree Nut Free", "Vegan", "Vegetarian"]
+    diet_options = ["Balanced", "High Fiber", "High Protein", "Low Carb", "Low Fat", "Low Sodium"]
+
+    healthIndex = []
+    dietIndex = []
+
+    for limit in health_limits:
+        if limit in health_options:
+            healthIndex.append(health_options.index(limit))
+    for diet in diets:
+        if diet in diet_options:
+            dietIndex.append(diet_options.index(diet))
+
+    print(healthIndex)
+
+    recipes, recipe_images = get_recipes(ingredients, dietIndex, healthIndex)
+    return render_template('recipes.html', recipes=recipes, backgroundImages=recipe_images)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -190,11 +190,7 @@ body {
     cursor: pointer;
 }
 
-.button--previous:hover {
-    cursor: pointer;
-}
-
-.button--next:hover {
+.button:hover {
     cursor: pointer;
 }
 

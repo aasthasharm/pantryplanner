@@ -8,41 +8,43 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="{{ url_for('index') }}" class="back-button">Back</a>
-        
-        <div class="dropdown">
-            <button class="dropbtn">Health Limits</button>
-            <div class="dropdown-content">
-                <label><input type="checkbox" name="health-limits" value="Dairy Free"> Dairy Free</label>
-                <label><input type="checkbox" name="health-limits" value="Egg Free"> Egg Free</label>
-                <label><input type="checkbox" name="health-limits" value="Fish Free"> Fish Free</label>
-                <label><input type="checkbox" name="health-limits" value="Gluten Free"> Gluten Free</label>
-                <label><input type="checkbox" name="health-limits" value="Keto Friendly"> Keto Friendly</label>
-                <label><input type="checkbox" name="health-limits" value="Kosher"> Kosher</label>
-                <label><input type="checkbox" name="health-limits" value="Peanut Free"> Peanut Free</label>
-                <label><input type="checkbox" name="health-limits" value="Pork Free"> Pork Free</label>
-                <label><input type="checkbox" name="health-limits" value="Tree Nut Free"> Tree Nut Free</label>
-                <label><input type="checkbox" name="health-limits" value="Vegan"> Vegan</label>
-                <label><input type="checkbox" name="health-limits" value="Vegetarian"> Vegetarian</label>
+    <form action="{{ url_for('update') }}" method="POST">
+        <nav class="navbar">
+            <a href="{{ url_for('index') }}" class="back-button">Back</a>
+            
+            <div class="dropdown">
+                <button class="dropbtn">Health Limits</button>
+                <div class="dropdown-content">
+                    <label><input type="checkbox" name="health-limits" value="Dairy Free"> Dairy Free</label>
+                    <label><input type="checkbox" name="health-limits" value="Egg Free"> Egg Free</label>
+                    <label><input type="checkbox" name="health-limits" value="Fish Free"> Fish Free</label>
+                    <label><input type="checkbox" name="health-limits" value="Gluten Free"> Gluten Free</label>
+                    <label><input type="checkbox" name="health-limits" value="Keto Friendly"> Keto Friendly</label>
+                    <label><input type="checkbox" name="health-limits" value="Kosher"> Kosher</label>
+                    <label><input type="checkbox" name="health-limits" value="Peanut Free"> Peanut Free</label>
+                    <label><input type="checkbox" name="health-limits" value="Pork Free"> Pork Free</label>
+                    <label><input type="checkbox" name="health-limits" value="Tree Nut Free"> Tree Nut Free</label>
+                    <label><input type="checkbox" name="health-limits" value="Vegan"> Vegan</label>
+                    <label><input type="checkbox" name="health-limits" value="Vegetarian"> Vegetarian</label>
+                </div>
             </div>
-        </div>
 
-        <div class="dropdown">
-            <button class="dropbtn">Diets</button>
-            <div class="dropdown-content">
-                <label><input type="checkbox" name="diets" value="Balanced"> Balanced</label>
-                <label><input type="checkbox" name="diets" value="High Fiber"> High Fiber</label>
-                <label><input type="checkbox" name="diets" value="High Protein"> High Protein</label>
-                <label><input type="checkbox" name="diets" value="Low Carb"> Low Carb</label>
-                <label><input type="checkbox" name="diets" value="Low Fat"> Low Fat</label>
-                <label><input type="checkbox" name="diets" value="Low Sodium"> Low Sodium</label>
+            <div class="dropdown">
+                <button class="dropbtn">Diets</button>
+                <div class="dropdown-content">
+                    <label><input type="checkbox" name="diets" value="Balanced"> Balanced</label>
+                    <label><input type="checkbox" name="diets" value="High Fiber"> High Fiber</label>
+                    <label><input type="checkbox" name="diets" value="High Protein"> High Protein</label>
+                    <label><input type="checkbox" name="diets" value="Low Carb"> Low Carb</label>
+                    <label><input type="checkbox" name="diets" value="Low Fat"> Low Fat</label>
+                    <label><input type="checkbox" name="diets" value="Low Sodium"> Low Sodium</label>
+                </div>
             </div>
-        </div>
 
-        <button class="update-btn">Update</button>
-    </nav>
-    
+            <button type="submit" class="update-btn">Update</button>
+        </nav>
+    </form>
+
     <div class="content-container">
         <div class="flex-parent jc-center">
             <button class="button button--previous" type="button">➜</button>
@@ -77,8 +79,16 @@
         <div class="flex-parent jc-center">
             <button class="button button--next" type="button">➜</button>
         </div>
-
-        <script type="text/javascript" {{ url_for('static', filename='app.js')}}>
+        <script type="text/javascript">
+            var images = {{backgroundImages|tojson}};
+            console.log(images);
+            var result = [];
+            for (var i in images) {
+                result.push(images[i]);
+            }
+            console.log(result);
+        </script>
+        <script>
             // Array of background images
             var currentSlideIndex = 0; // Keep track of the current slide index
         
@@ -92,9 +102,11 @@
                 if (direction === "previous") {
                     currentSlideIndex = Math.max(0, currentSlideIndex - 1);
                 } else {
-                    currentSlideIndex = Math.min(backgroundImages.length - 1, currentSlideIndex + 1);
+                    currentSlideIndex = Math.min(result.length - 1, currentSlideIndex + 1);
                 }
                 console.log(currentSlideIndex);
+
+                document.body.style.backgroundImage = `url('${result[currentSlideIndex]}')`;
         
                 // Scroll to the new slide
                 list.scrollTo({ left: itemWidth * currentSlideIndex, behavior: "smooth" });
@@ -105,7 +117,15 @@
             document.querySelector(".button--next").addEventListener("click", () => handleClick("next"));
         
             // Set initial background image
-            document.body.style.backgroundImage = backgroundImages[currentSlideIndex];
+            document.body.style.backgroundImage = result[currentSlideIndex];
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowLeft") {
+                    handleClick("previous"); // Left arrow key pressed
+                } else if (event.key === "ArrowRight") {
+                    handleClick("next"); // Right arrow key pressed
+                }
+            });
         </script>
         
         
