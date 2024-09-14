@@ -3,31 +3,36 @@ import requests
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     return render_template('home.html')
 
-@app.route('/submit', methods=['GET','POST'])
+
+@app.route('/submit', methods=['GET', 'POST'])
 def submit():
     # do the submission
     ingredients = request.form['ingredients']
     # dietIndex = request.form[]
     # healthIndex = request.form[]
     # Call getreq function to fetch recipes
-    recipes = get_recipes(ingredients)# , dietIndex, healthIndex)
+    recipes, recipe_images = get_recipes(ingredients)  # , dietIndex, healthIndex)
+    # print(recipes[1])
 
     # Pass the recipes data to the recipes template
-    return render_template('recipes.html', recipes=recipes)
+    return render_template('recipes.html', recipes=recipes, backgroundImages=recipe_images)
     # real.
 
+
 def get_recipes(ingredients, dietIndex=[6], healthIndex=[11]):
-    #edamam api provided info
-    dietLabels = ["balanced", "high-fiber","high-protein","low-carb","low-fat","low-sodium", None]
-    healthLabels = ["dairy-free","egg-free", "fish-free","gluten-free", "keto-friendly", "kosher", "peanut-free", "pork-free", "tree-nut-free", "vegan", "vegetarian", None]
+    # edamam api provided info
+    dietLabels = ["balanced", "high-fiber", "high-protein", "low-carb", "low-fat", "low-sodium", None]
+    healthLabels = ["dairy-free", "egg-free", "fish-free", "gluten-free", "keto-friendly", "kosher", "peanut-free",
+                    "pork-free", "tree-nut-free", "vegan", "vegetarian", None]
     app_id = "1e2add40"
     app_key = "a3f2516eac59adac59fca4f60bee47d7"
 
-    #select diet and health restrictions
+    # select diet and health restrictions
     dietRestrict = []
     healthRestrict = []
 
@@ -37,14 +42,15 @@ def get_recipes(ingredients, dietIndex=[6], healthIndex=[11]):
     for j in range(len(healthIndex)):
         healthRestrict.append(healthLabels[healthIndex[j]])
 
-    response = requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}&healthLabels={healthRestrict}&dietLabels={dietRestrict}").json()
-
+    response = requests.get(
+        f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}&healthLabels={healthRestrict}&dietLabels={dietRestrict}").json()
 
     all_recipes_data = []
+    recipe_images = []
 
     for i, hit in enumerate(response['hits']):
         recipe = hit['recipe']
-        
+
         recipe_data = {
             "recipe_name": recipe['label'],
             "image": recipe['image'],
@@ -60,13 +66,15 @@ def get_recipes(ingredients, dietIndex=[6], healthIndex=[11]):
             "fiber": recipe['totalNutrients'].get('FIBTG', {}).get('quantity', 'N/A'),
         }
         all_recipes_data.append(recipe_data)
+        recipe_images.append(recipe['image'])
 
-    return all_recipes_data
+    return all_recipes_data, recipe_images
 
 
 @app.route('/recipes')
 def recipes():
     return render_template('recipes.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
