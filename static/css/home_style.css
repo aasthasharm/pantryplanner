@@ -5,69 +5,91 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Georgia, serif;    
     height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
     background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 100px #000;
 }
 
 .top-left {
-    margin: 20px;
+    position: relative;
+    width: 85%; 
+    left: 20px;
 }
 
 .top-left h1 {
-    font-size: 20px;
+    font-size: 110px;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    width: 85%;
 }
 
 .input-container {
     display: flex;
     align-items: center;
+    width: 20%; /* Adjusted width for the input container */
+    position: relative; /* Ensures button stretches within the container */
 }
 
 .textbox {
-    width: 300px;
-    height: 40px;
-    padding: 5px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
+    width: 100%; 
+    height: 50px; 
+    padding: 10px;
+    font-size: 18px; 
+    border: 2px solid #333;
+    border-radius: 8px 8px 8px 8px; 
+    border-right: none; 
+    transition: width 0.3s ease; /* Smooth transition for width */
+    z-index: 1; /* Ensure textbox stays on top initially */
 }
 
 .submit-btn {
-    width: 40px;
-    height: 40px;
-    background-color: #007BFF;
-    border: none;
+    width: 60px; /* Initial width of the button */
+    height: 50px; /* Match the height of the textbox */
+    background-color: #4a4a4a;
+    border: 2px solid #333;
+    border-radius: 0 8px 8px 0;
     color: white;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
-    margin-left: 10px;
-    border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: width 0.3s ease, background-color 0.3s ease; /* Smooth transition for width and color */
+    z-index: 2; /* Ensure button stays on top */
 }
 
-.submit-btn:hover {
-    background-color: #0056b3;
+.input-container:hover .submit-btn {
+    width: 100%; /* Expand the button to cover the entire input */
+    border-radius: 8px; /* Remove border-radius when button expands */
+    right: 0; /* Ensure the button stays aligned */
+    background-color: #333;
 }
+
+.input-container:hover .textbox {
+    z-index: -1; /* Ensure the textbox stays behind the button when hovered */
+}
+
 
 .bottom-right {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 30px;
+    right: 40px;
 }
 
 .bottom-right a {
-    font-size: 16px;
-    color: #007BFF;
+    font-size: 24px;
+    color: #000000;
     text-decoration: none;
 }
 
 .bottom-right a:hover {
     text-decoration: underline;
 }
+

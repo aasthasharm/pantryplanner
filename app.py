@@ -12,7 +12,7 @@ def submit():
     ingredients = request.form['ingredients']
     return redirect(url_for('recipes'))
     # do this render_template with recipes information
-
+    # real.
 @app.route('/recipes')
 def recipes():
     return render_template('recipes.html')
