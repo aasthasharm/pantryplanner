@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Generator</title>
-    <link rel="stylesheet" href="\..\static\css\style.css">
+    <link rel="stylesheet" href="\..\static\css\home_style.css">
 </head>
 <body>
 
     <div class="top-left">
         <h1>input ingredients.</h1>
         <h1>get recipes.</h1>
-        <div class="input-container">
-            <input type="text" placeholder="Enter ingredients" class="textbox">
-            <button class="submit-btn">&#9654;</button>
-        </div>
+        <form action="{{ url_for('submit') }}" method="POST">
+            <div class="input-container">
+                <input type="text" name="ingredients" placeholder="Enter ingredients" class="textbox">
+                <button type="submit" class="submit-btn">&#9654;</button>
+            </div>
+        </form>
     </div>
 
     <div class="bottom-right">
