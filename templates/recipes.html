@@ -7,10 +7,36 @@
     <link rel="stylesheet" href="\..\static\css\recipes_style.css">
 </head>
 <body>
-    <div class="container">
 
+    <!-- Navigation Bar -->
+    <nav class="navbar">
         <a href="{{ url_for('index') }}" class="back-button">back</a>
+        
+        <!-- Dropdown: Health Limits -->
+        <div class="dropdown">
+            <button class="dropbtn">Health Limits</button>
+            <div class="dropdown-content">
+                <a href="#">Low Sodium</a>
+                <a href="#">Low Sugar</a>
+                <a href="#">Gluten Free</a>
+            </div>
+        </div>
 
+        <!-- Dropdown: Diets -->
+        <div class="dropdown">
+            <button class="dropbtn">Diets</button>
+            <div class="dropdown-content">
+                <a href="#">Vegan</a>
+                <a href="#">Keto</a>
+                <a href="#">Paleo</a>
+            </div>
+        </div>
+
+        <!-- Update Button -->
+        <button class="update-btn">Update</button>
+    </nav>
+
+    <div class="container">
         <ul class="list">
             <li class="item"><div class="content">Item 1</div></li>
             <li class="item"><div class="content">Item 2</div></li>
@@ -18,6 +44,28 @@
             <li class="item"><div class="content">Item 4</div></li>
             <li class="item"><div class="content">I'm gonna touch you</div></li>
         </ul>
+        <div class="flex-parent jc-center">
+            <button class="button button--previous" type="button">➜</button>
+            <button class="button button--next" type="button">➜</button>
+        </div>
     </div>
+
+    <script>
+        const list = document.querySelector(".list");
+        const item = document.querySelector(".item");
+        const itemWidth = item.offsetWidth;
+
+        function handleClick(direction) {
+            if(direction === "previous") {
+                list.scrollBy({ left: -itemWidth, behavior: "smooth" });
+            } else {
+                list.scrollBy({ left: itemWidth, behavior: "smooth" });
+            }
+        }
+
+        document.querySelector(".button--previous").addEventListener("click", () => handleClick("previous"));
+        document.querySelector(".button--next").addEventListener("click", () => handleClick("next"));
+    </script>      
+    
 </body>
 </html>
