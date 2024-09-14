@@ -33,15 +33,7 @@ def get_recipes(ingredients, dietIndex=[0], healthIndex=[10]):
 
     response = requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}&healthLabels={healthRestrict}&dietLabels={dietRestrict}").json()
 
-    return response.get('hits', [])
-
-def get_recipes(ingredients):
-    app_id = "1e2add40"
-    app_key = "a3f2516eac59adac59fca4f60bee47d7"
-
-    response = requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}").json()
-
-    return response.get('hits', [])
+    return response['hits']
 
 @app.route('/recipes')
 def recipes():
