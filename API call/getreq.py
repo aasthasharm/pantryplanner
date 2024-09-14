@@ -24,6 +24,6 @@ for i in range(len(dietIndex)):
 for j in range(len(healthIndex)):
     healthRestrict.append(healthLabels[healthIndex[j]])
 
-response = requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}&healthLabels={healthRestrict}&dietLabels={dietRestrict}").json()
+response = requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}&healthLabels={healthRestrict}&dietLabels={dietRestrict}")
 
-print(response)
+print(type(response))

@@ -45,7 +45,7 @@
     
     <div class="content-container">
         <div class="flex-parent jc-center">
-            <button class="button button--previous" type="button">➜</button>
+            <button class="button--previous" type="button">➜</button>
         </div>
         <div class="container">
             <ul class="list">
@@ -57,24 +57,54 @@
             </ul>
         </div>
         <div class="flex-parent jc-center">
-            <button class="button button--next" type="button">➜</button>
+            <button class="button--next" type="button">➜</button>
         </div>
 
         <script>
+            // Array of background images
+            const backgroundImages = [
+                "url('https://i.etsystatic.com/20341642/r/il/8be8cd/2572122727/il_1080xN.2572122727_2qhg.jpg')",
+                "url('https://i.etsystatic.com/20341642/r/il/ff34bf/2572267501/il_570xN.2572267501_bc3o.jpg')",
+                "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB78I9_xOXenkhp-dr-2mSsOSu1CauHuPGGQ&s')",
+                "url('https://i.etsystatic.com/20341642/r/il/1066b7/2524627264/il_570xN.2524627264_8sts.jpg')",
+                "url('https://i.etsystatic.com/11988330/r/il/71fcf6/2367988416/il_570xN.2367988416_hf6j.jpg')"
+            ];
+         
+            var currentSlideIndex = 0; // Keep track of the current slide index
+        
+            // Function to handle click and slide transition
             function handleClick(direction) {
                 const list = document.querySelector(".list");
                 const item = document.querySelector(".item");
                 const itemWidth = item ? item.offsetWidth : 0; // Ensure itemWidth is calculated
-                if(direction === "previous") {
-                    list.scrollBy({ left: -itemWidth, behavior: "smooth" });
+        
+                // Update the current slide index
+                if (direction === "previous") {
+                    currentSlideIndex = Math.max(0, currentSlideIndex - 1);
                 } else {
-                    list.scrollBy({ left: itemWidth, behavior: "smooth" });
+                    currentSlideIndex = Math.min(backgroundImages.length - 1, currentSlideIndex + 1);
                 }
-            }
+                console.log(currentSlideIndex);
+        
+                // Change the background image
+                document.body.style.backgroundImage = backgroundImages[currentSlideIndex];
+                document.body.classList.add("background-transition");
 
+                console.log(backgroundImages[currentSlideIndex]);
+        
+                // Scroll to the new slide
+                list.scrollTo({ left: itemWidth * currentSlideIndex, behavior: "smooth" });
+            }
+        
+            // Event listeners for buttons
             document.querySelector(".button--previous").addEventListener("click", () => handleClick("previous"));
             document.querySelector(".button--next").addEventListener("click", () => handleClick("next"));
-        </script>  
+        
+            // Set initial background image
+            document.body.style.backgroundImage = backgroundImages[currentSlideIndex];
+        </script>
+        
+        
     </div>
 </body>
 </html>

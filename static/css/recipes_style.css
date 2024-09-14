@@ -12,6 +12,7 @@ body {
     align-items: center;
     height: 100vh;
     background-image: url("pantryplannerbackground.png");
+    transition: background-image 1s ease-in-out;
 }
 
 .navbar {
