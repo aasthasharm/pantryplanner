@@ -22,7 +22,7 @@ body {
 
 .navbar {
     width: 100%;
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgba(0,0,0,0.4);
     display: flex;
     justify-content: flex-end; /* Align items to the right */
     align-items: center;
@@ -35,7 +35,7 @@ body {
 }
 
 .back-button {
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgba(242,82,82,0.2);
     color: black;
     border: none;
     padding: 10px 20px;
@@ -46,7 +46,7 @@ body {
 }
 
 .back-button:hover {
-    background-color: #000000;
+    background-color: rgba(208,43,43,0.4);
     color: white;
 }
 
@@ -109,10 +109,12 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 20px; /* Adds spacing to the right */
+    text-decoration: underline;
 }
 
 .update-btn:hover {
     background-color: rgb(33,136,56,0.4);
+    color: white;
 }
 
 .content-container {
@@ -139,7 +141,7 @@ body {
 .list {
     display: flex;
     gap: 8px;
-    padding: 25px 0;
+    margin-top: 0px;
     list-style: none;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
@@ -158,7 +160,6 @@ body {
     border-radius: 32px 32px 32px 32px;
     color: #999;
     text-align: center;
-
 }
 
 .content {
@@ -171,6 +172,8 @@ body {
     font-size: 64px;
     font-weight: bold;
     border-radius: 32px 32px 32px 32px;
+    margin-top: 50px;
+
 }
 
 .button {
@@ -254,6 +257,7 @@ button.margin-right {
   /* This container is needed to position the front and back side */
   .flip-card-inner {
     position: relative;
+    top: -100px;
     width: 100%;
     height: 100%;
     text-align: center;
