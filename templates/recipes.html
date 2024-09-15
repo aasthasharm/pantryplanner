@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="update-btn">Update</button>
+            <button type="submit" value="refresh" class="update-btn">Update</button>
         </nav>
     </form>
 
@@ -81,12 +81,10 @@
         </div>
         <script type="text/javascript">
             var images = {{backgroundImages|tojson}};
-            console.log(images);
             var result = [];
             for (var i in images) {
                 result.push(images[i]);
             }
-            console.log(result);
         </script>
         <script>
             // Array of background images
@@ -127,8 +125,6 @@
                 }
             });
         </script>
-        
-        
     </div>
 </body>
 </html>

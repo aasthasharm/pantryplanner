@@ -42,9 +42,23 @@ def get_recipes(ingredients, dietIndex=[6], healthIndex=[11]):
 
     for j in range(len(healthIndex)):
         healthRestrict.append(healthLabels[healthIndex[j]])
+    
+    if (type(ingredients) is list):
+        ingredients = ','.join(ingredients)
+    ingredients = ingredients.replace(" ","%20").replace(",","%20")
+    health = ""
+    if (None not in healthRestrict):
+        for string in healthRestrict:
+            health += "&health=" + string
+    diet = ""
+    if (None not in dietRestrict):
+        for string in dietRestrict:
+            diet += "&diet=" + string
+
+    print(requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}{diet}{health}"))
 
     response = requests.get(
-        f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}&healthLabels={healthRestrict}&dietLabels={dietRestrict}").json()
+        f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}{diet}{health}").json()
 
     all_recipes_data = []
     recipe_images = []
@@ -86,9 +100,9 @@ def update():
     diets = request.form.getlist('diets')
     print(diets)
 
-    health_options = ["Dairy Free", "Egg Free", "Fish Free", "Gluten Free", "Keto Friendly", "Kosher", 
-                      "Peanut Free", "Pork Free", "Tree Nut Free", "Vegan", "Vegetarian"]
-    diet_options = ["Balanced", "High Fiber", "High Protein", "Low Carb", "Low Fat", "Low Sodium"]
+    health_options = ["dairy-free", "egg-free", "fish-free", "gluten-free", "keto-friendly", "kosher", 
+                      "peanut-free", "pork-free", "tree-nut-free", "vegan", "vegetarian"]
+    diet_options = ["balanced", "high-fiber", "high-protein", "low-carb", "low-far", "low-sodium"]
 
     healthIndex = []
     dietIndex = []
