@@ -218,7 +218,8 @@ button.margin-right {
   }
 
 .flip-card p {
-    font-size: 16px;
+    font-size: 24px;
+    text-align: left;
     /* font-weight: bold; */
 }
   

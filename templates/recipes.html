@@ -60,16 +60,15 @@
                             <p>Ingredients: {{ recipe['ingredients'] }}</p>
                         </div>
                         <div class="flip-card-back">
-                            <p></p>
-                            <p>Calories: {{ recipe['calories'] }}</p>
-                            <p>Fat: {{ recipe['fat'] }}</p>
-                            <p>Sodium: {{ recipe['sodium'] }}</p>
-                            <p>Cholesterol: {{ recipe['cholesterol'] }}</p>
-                            <p>Carbs: {{ recipe['carbs'] }}</p>
-                            <p>Sugar: {{ recipe['sugar'] }}</p>
-                            <p>Fiber: {{ recipe['fiber'] }}</p>
-                            <p>Protein: {{ recipe['protein'] }}</p>
                             <p>Website URL: {{ recipe['url'] }}</p>
+                            <p>Calories: {{ (recipe['calories'])|round }} kcal</p>
+                            <p>Fat: {{ (recipe['fat'])|round }} g</p>
+                            <p>Sodium: {{ (recipe['sodium'])|round }} mg</p>
+                            <p>Cholesterol: {{ (recipe['cholesterol'])|round }} mg</p>
+                            <p>Carbs: {{ (recipe['carbs'])|round }} g</p>
+                            <p>Sugar: {{ (recipe['sugar'])|round }} g</p>
+                            <p>Fiber: {{ (recipe['fiber'])|round }} g</p>
+                            <p>Protein: {{ (recipe['protein'])|round }} g</p>
                         </div>
                         </div>
                     </div>
