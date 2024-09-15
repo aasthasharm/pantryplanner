@@ -2,18 +2,22 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 import requests
 
 app = Flask(__name__)
-global ingredients
-ingredients = []
+ingredients = ""
 
 @app.route('/')
 def index():
+    global ingredients
+    if ingredients != "":
+        ingredients = ""
     return render_template('home.html')
 
 
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
+    global ingredients
     # do the submission
-    ingredients = request.form['ingredients']
+    if ingredients == "":
+        ingredients = request.form['ingredients']
     # dietIndex = request.form[]
     # healthIndex = request.form[]
     # Call getreq function to fetch recipes
@@ -55,7 +59,7 @@ def get_recipes(ingredients, dietIndex=[6], healthIndex=[11]):
         for string in dietRestrict:
             diet += "&diet=" + string
 
-    print(requests.get(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}{diet}{health}"))
+    print(f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}{diet}{health}")
 
     response = requests.get(
         f"https://api.edamam.com/search?q={ingredients}&app_id={app_id}&app_key={app_key}{diet}{health}").json()
