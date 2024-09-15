@@ -7,6 +7,7 @@ p {
     font-size: 16px;
 }
 
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -16,6 +17,7 @@ body {
     height: 100vh;
     background-image: url("pantryplannerbackground.png");
     transition: background-image 1s ease-in-out;
+    backdrop-filter: blur(12px);
 }
 
 .navbar {
@@ -116,12 +118,14 @@ body {
 .content-container {
     display: flex;
     justify-content: space-between;
-    height: 75%
+    height: 95%
+    position: relative;
+    padding: 50px;
 }
 
 .container {
     position: relative;
-    height: 85%;
+    height: 100%;
     width: 80%;
     max-width: 600px;
     background-color: transparent;
@@ -135,7 +139,7 @@ body {
 .list {
     display: flex;
     gap: 8px;
-    padding: 0px;
+    padding: 25px 0;
     list-style: none;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
@@ -149,19 +153,20 @@ body {
 .item {
     flex-shrink: 0;
     width: 100%;
-    height: 80vh;
+    height: 90vh;
     scroll-snap-align: center;
     border-radius: 32px 32px 32px 32px;
-    color: #333;
+    color: #999;
     text-align: center;
+
 }
 
 .content {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 75%;
-    background-color: rgba(255,255,255,0.25);
+    height: 85%;
+    background-color: rgba(0,0,0,0.4);
     font-family: sans-serif;
     font-size: 64px;
     font-weight: bold;
@@ -217,6 +222,29 @@ button.margin-right {
     /* perspective: 1000px; Remove this if you don't want the 3D effect */
   }
 
+.flip-card br {
+    display: block;
+    line-height: 2px;
+    font-size: 2px;
+}
+
+.flip-card small {
+    line-height: 100px;
+}
+
+.flip-card a {
+    font-size: 36px;
+    color: #fff;
+    font-family: Georgia;
+    margin-top: 5px;
+}
+
+.flip-card h1 {
+    font-size: 36px;
+    color: #fff;
+    font-family: Georgia;
+}
+
 .flip-card p {
     font-size: 24px;
     text-align: left;
@@ -250,13 +278,13 @@ button.margin-right {
   /* Style the front side (fallback if image is missing) */
   .flip-card-front {
     /* background-color: #bbb; */
-    color: #555;
+    color: #ccc;
   }
   
   /* Style the back side */
   .flip-card-back {
     /* background-color: #555; */
-    color: #555;
+    color: #ccc;
     transform: rotateY(180deg);
   }
 
