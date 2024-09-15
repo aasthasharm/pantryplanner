@@ -11,7 +11,7 @@
     <form action="{{ url_for('update') }}" method="POST">
         <nav class="navbar">
             <a href="{{ url_for('index') }}" class="back-button">Back</a>
-            
+
             <div class="dropdown">
                 <button class="dropbtn">Health Limits</button>
                 <div class="dropdown-content">
@@ -56,7 +56,7 @@
                     <div class="flip-card">
                         <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <p>{{ recipe['recipe_name'] }}</p>
+                            <p style="font-size:0.5em;">{{ recipe['recipe_name'] }}</p>
                             <p>Ingredients: {{ recipe['ingredients'] }}</p>
                         </div>
                         <div class="flip-card-back">
@@ -91,13 +91,13 @@
         <script>
             // Array of background images
             var currentSlideIndex = 0; // Keep track of the current slide index
-        
+
             // Function to handle click and slide transition
             function handleClick(direction) {
                 const list = document.querySelector(".list");
                 const item = document.querySelector(".item");
                 const itemWidth = item ? item.offsetWidth : 0; // Ensure itemWidth is calculated
-        
+
                 // Update the current slide index
                 if (direction === "previous") {
                     currentSlideIndex = Math.max(0, currentSlideIndex - 1);
@@ -107,15 +107,15 @@
                 console.log(currentSlideIndex);
 
                 document.body.style.backgroundImage = `url('${result[currentSlideIndex]}')`;
-        
+
                 // Scroll to the new slide
                 list.scrollTo({ left: itemWidth * currentSlideIndex, behavior: "smooth" });
             }
-        
+
             // Event listeners for buttons
             document.querySelector(".button--previous").addEventListener("click", () => handleClick("previous"));
             document.querySelector(".button--next").addEventListener("click", () => handleClick("next"));
-        
+
             // Set initial background image
             document.body.style.backgroundImage = result[currentSlideIndex];
 
@@ -127,8 +127,8 @@
                 }
             });
         </script>
-        
-        
+
+
     </div>
 </body>
 </html>
