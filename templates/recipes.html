@@ -11,33 +11,33 @@
     <form action="{{ url_for('update') }}" method="POST">
         <nav class="navbar">
             <a href="{{ url_for('index') }}" class="back-button">Back</a>
-
+            
             <div class="dropdown">
                 <button class="dropbtn">Health Limits</button>
                 <div class="dropdown-content">
-                    <label><input type="checkbox" name="health-limits" value="Dairy Free"> Dairy Free</label>
-                    <label><input type="checkbox" name="health-limits" value="Egg Free"> Egg Free</label>
-                    <label><input type="checkbox" name="health-limits" value="Fish Free"> Fish Free</label>
-                    <label><input type="checkbox" name="health-limits" value="Gluten Free"> Gluten Free</label>
-                    <label><input type="checkbox" name="health-limits" value="Keto Friendly"> Keto Friendly</label>
-                    <label><input type="checkbox" name="health-limits" value="Kosher"> Kosher</label>
-                    <label><input type="checkbox" name="health-limits" value="Peanut Free"> Peanut Free</label>
-                    <label><input type="checkbox" name="health-limits" value="Pork Free"> Pork Free</label>
-                    <label><input type="checkbox" name="health-limits" value="Tree Nut Free"> Tree Nut Free</label>
-                    <label><input type="checkbox" name="health-limits" value="Vegan"> Vegan</label>
-                    <label><input type="checkbox" name="health-limits" value="Vegetarian"> Vegetarian</label>
+                    <label><input type="checkbox" name="health-limits" value="dairy-free"> Dairy Free</label>
+                    <label><input type="checkbox" name="health-limits" value="egg-free"> egg-free</label>
+                    <label><input type="checkbox" name="health-limits" value="fish-free"> fish-free</label>
+                    <label><input type="checkbox" name="health-limits" value="gluten-free"> gluten-free</label>
+                    <label><input type="checkbox" name="health-limits" value="keto-friendly"> keto-friendly</label>
+                    <label><input type="checkbox" name="health-limits" value="kosher"> kosher</label>
+                    <label><input type="checkbox" name="health-limits" value="peanut-free"> peanut-free</label>
+                    <label><input type="checkbox" name="health-limits" value="pork-free"> pork-free</label>
+                    <label><input type="checkbox" name="health-limits" value="tree-nut-free"> tree-nut-free</label>
+                    <label><input type="checkbox" name="health-limits" value="vegan"> vegan</label>
+                    <label><input type="checkbox" name="health-limits" value="vegetarian"> vegetarian</label>
                 </div>
             </div>
 
             <div class="dropdown">
                 <button class="dropbtn">Diets</button>
                 <div class="dropdown-content">
-                    <label><input type="checkbox" name="diets" value="Balanced"> Balanced</label>
-                    <label><input type="checkbox" name="diets" value="High Fiber"> High Fiber</label>
-                    <label><input type="checkbox" name="diets" value="High Protein"> High Protein</label>
-                    <label><input type="checkbox" name="diets" value="Low Carb"> Low Carb</label>
-                    <label><input type="checkbox" name="diets" value="Low Fat"> Low Fat</label>
-                    <label><input type="checkbox" name="diets" value="Low Sodium"> Low Sodium</label>
+                    <label><input type="checkbox" name="diets" value="balanced"> balanced</label>
+                    <label><input type="checkbox" name="diets" value="high-fiber"> high-fiber</label>
+                    <label><input type="checkbox" name="diets" value="high-protein"> high-protein</label>
+                    <label><input type="checkbox" name="diets" value="low-carb"> low-carb</label>
+                    <label><input type="checkbox" name="diets" value="low-fat"> low-fat</label>
+                    <label><input type="checkbox" name="diets" value="low-sodium"> low-sodium</label>
                 </div>
             </div>
 
@@ -56,7 +56,7 @@
                     <div class="flip-card">
                         <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <p style="font-size:0.5em;">{{ recipe['recipe_name'] }}</p>
+                            <p>{{ recipe['recipe_name'] }}</p>
                             <p>Ingredients: {{ recipe['ingredients'] }}</p>
                         </div>
                         <div class="flip-card-back">
@@ -91,13 +91,13 @@
         <script>
             // Array of background images
             var currentSlideIndex = 0; // Keep track of the current slide index
-
+        
             // Function to handle click and slide transition
             function handleClick(direction) {
                 const list = document.querySelector(".list");
                 const item = document.querySelector(".item");
                 const itemWidth = item ? item.offsetWidth : 0; // Ensure itemWidth is calculated
-
+        
                 // Update the current slide index
                 if (direction === "previous") {
                     currentSlideIndex = Math.max(0, currentSlideIndex - 1);
@@ -107,15 +107,15 @@
                 console.log(currentSlideIndex);
 
                 document.body.style.backgroundImage = `url('${result[currentSlideIndex]}')`;
-
+        
                 // Scroll to the new slide
                 list.scrollTo({ left: itemWidth * currentSlideIndex, behavior: "smooth" });
             }
-
+        
             // Event listeners for buttons
             document.querySelector(".button--previous").addEventListener("click", () => handleClick("previous"));
             document.querySelector(".button--next").addEventListener("click", () => handleClick("next"));
-
+        
             // Set initial background image
             document.body.style.backgroundImage = result[currentSlideIndex];
 
@@ -127,8 +127,8 @@
                 }
             });
         </script>
-
-
+        
+        
     </div>
 </body>
 </html>
