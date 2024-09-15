@@ -213,9 +213,14 @@ button.margin-right {
     background-color: transparent;
     width: 450px;
     height: 300px;
-    border: 1px solid #f1f1f1;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    /* border: 1px solid #f1f1f1; */
+    /* perspective: 1000px; Remove this if you don't want the 3D effect */
   }
+
+.flip-card p {
+    font-size: 16px;
+    /* font-weight: bold; */
+}
   
   /* This container is needed to position the front and back side */
   .flip-card-inner {
@@ -243,16 +248,32 @@ button.margin-right {
   
   /* Style the front side (fallback if image is missing) */
   .flip-card-front {
-    background-color: #bbb;
-    color: black;
+    /* background-color: #bbb; */
+    color: #555;
   }
   
   /* Style the back side */
   .flip-card-back {
-    background-color: dodgerblue;
-    color: white;
+    /* background-color: #555; */
+    color: #555;
     transform: rotateY(180deg);
   }
 
   /* Temp Changes */
 
+ /* General Styles */
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+  }
+
+  /* Navigation buttons */
+  .navigation {
+      display: flex;
+      align-items: center;
+  }
+
+/* Start http://www.cursors-4u.com */ * {cursor: url(https://cur.cursors-4u.net/games/gam-14/gam1379.ani), url(http://cur.cursors-4u.net/games/gam-14/gam1379.png), auto !important;} /* End http://www.cursors-4u.com */
+/*This is the cursor, can obtain from link above*/
